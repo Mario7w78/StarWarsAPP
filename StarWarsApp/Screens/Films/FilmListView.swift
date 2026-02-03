@@ -7,49 +7,42 @@
 
 import SwiftUI
 
-
 struct FilmListView: View {
-    @State var films: [Film] = []
-    @State var isLoading: Bool = true
+    @StateObject var viewModel = FilmViewModel()
     var body: some View {
         NavigationStack{
             ZStack{
-                Color(.black)
+                Color(.swBg)
                     .edgesIgnoringSafeArea(.all)
                 VStack {
-                    Text("FILMS")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
-                        .bold()
-                    
                     ScrollView(.horizontal){
                         LazyHStack{
-                            ForEach(films, id: \.episodeId){film in
-                                NavigationLink(destination: FilmDetailView(film: film)){
-                                    FilmPreview(title: film.title, episode: film.episodeId)
+                            ForEach(viewModel.films, id: \.episodeId){film in
+                                
+                                let filmImageName: String = viewModel.getImageName(episode: film.episodeId)
+                                
+                                NavigationLink(destination: FilmDetailView(film: film, filmImage: filmImageName )){
+                                    FilmPreview(title: film.title, episode: film.episodeId, filmImage: filmImageName)
                                 }
                             }
                             
                         }.padding(.horizontal, 20)
                     }
-                    .frame(height: 500)
+                    .frame(height: 550)
+                    .scrollIndicators(.hidden)
                 }
-                .onAppear {
-                    Task{
-                        do {
-                            let wrappedFilms = try await getFilms()
-                            films = wrappedFilms.results
-                        }catch{
-                            print("ono")
-                        }
-                        isLoading = false
-                    }
-                }
-                
-                if isLoading {
+                if viewModel.isLoading {
                     ProgressView()
                         .tint(.white)
-                        
+                    
+                }
+            }
+            .task { await viewModel.getFilms() }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Films")
+                        .font(.largeTitle.bold())
+                        .foregroundColor(.white)
                 }
             }
         }
@@ -59,3 +52,6 @@ struct FilmListView: View {
 #Preview {
     FilmListView()
 }
+
+
+

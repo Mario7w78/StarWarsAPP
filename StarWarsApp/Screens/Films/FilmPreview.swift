@@ -10,9 +10,11 @@ import SwiftUI
 struct FilmPreview: View {
     let title: String
     let episode: Int
+    let filmImage: String
     var body: some View {
+        
         VStack{
-            Image("filmImage")
+            Image(filmImage)
                 .resizable()
                 .scaledToFit()
             Text(title)
@@ -25,6 +27,7 @@ struct FilmPreview: View {
     }
 }
 
+
 #Preview {
-    FilmPreview(title: "Titulo", episode: 1)
+    FilmPreview(title: "Titulo", episode: 1, filmImage: "ANewHope")
 }

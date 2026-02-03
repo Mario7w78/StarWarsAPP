@@ -20,10 +20,15 @@ struct MenuStarWars: View {
                         .frame(height: 200)
                         .padding()
                     NavigationLink(destination: FilmListView()) {
-                        Text("START")
-                            .font(.largeTitle)
-                            .foregroundStyle(.white)
-                            .bold()
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 20)
+                                .strokeBorder(Color.white, lineWidth: 3)
+                                .frame(width: 200, height: 50)
+                            Text("START")
+                                .font(.largeTitle)
+                                .foregroundStyle(.white)
+                                .bold()
+                        }
                     }
                 }
             }

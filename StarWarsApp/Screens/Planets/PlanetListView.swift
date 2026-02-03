@@ -9,15 +9,14 @@ import SwiftUI
 
 struct PlanetListView: View {
     
+    @StateObject var viewModel = PlanetViewModel()
     let film : [String]
     let filter: Bool
-    @State var planets: [Planet] = []
-    @State var isLoading: Bool = true
     
     var body: some View {
         NavigationStack{
             ZStack{
-                Color(.black)
+                Color(.swBg)
                     .ignoresSafeArea()
                 VStack(){
                     Text("PLANETS")
@@ -27,36 +26,21 @@ struct PlanetListView: View {
                     
                     ScrollView(.horizontal) {
                         LazyHStack(){
-                            ForEach(planets, id: \.name) { planet in
+                            ForEach(viewModel.planets, id: \.name) { planet in
                                 NavigationLink(destination: PlanetDetailView(planet: planet)){
-                                    PlanetPreview(planetName: planet.name)
+                                    Preview(text: planet.name, imageName: "globe.americas.fill")
                                 }
                             }
                         }
                     }
                     .frame(height: 200)
                 }
-                if isLoading {
+                if viewModel.isLoading {
                     ProgressView()
                         .tint(.white)
                 }
             }
-            .onAppear{
-                Task{
-                    do{
-                        if filter {
-                            planets = try await getPlanetsByFilm(filmPlanetUrl: film)
-                        }
-                        else {
-                            planets = try await getPlanets()
-                        }
-                    }
-                    catch {
-                        print("Error: \(error)")
-                    }
-                    isLoading = false
-                }
-            }
+            .task{await viewModel.getPlanets(film: film, filter: filter)}
             
             
         }

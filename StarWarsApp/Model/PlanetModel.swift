@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct WrappedPlanets: Decodable {
+struct PlanetResponse: Decodable {
     let results: [Planet]
 }
 
@@ -39,25 +39,3 @@ struct Planet: Decodable {
 }
 
 
-func getPlanets() async throws -> [Planet]{
-    let url = URL(string: "https://swapi.dev/api/planets/")
-    
-    let (data, _) = try await URLSession.shared.data(from: url!)
-    
-    let wrappedPlanets = try JSONDecoder().decode(WrappedPlanets.self, from: data)
-    return wrappedPlanets.results
-}
-
-
-func getPlanetsByFilm(filmPlanetUrl: [String]) async throws -> [Planet]{
-    var planets: [Planet] = []
-    
-    for url in filmPlanetUrl {
-        let urlString = URL(string: url)!
-        let (data, _) = try await URLSession.shared.data(from: urlString)
-        let planet = try JSONDecoder().decode(Planet.self, from: data)
-        planets.append(planet)
-    }
-    
-    return planets
-}

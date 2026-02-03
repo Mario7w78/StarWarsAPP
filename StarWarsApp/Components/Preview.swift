@@ -1,29 +1,32 @@
 //
-//  PlanetPreview.swift
+//  Preview.swift
 //  StarWarsApp
 //
-//  Created by Mario on 27/01/26.
+//  Created by Mario on 29/01/26.
 //
 
 import SwiftUI
 
-struct PlanetPreview: View {
+struct Preview: View {
     
-    let planetName: String
+    let text: String
+    let imageName: String
     var body: some View {
-        VStack {
-            Image(systemName: "globe.americas.fill")
+        VStack() {
+            Image(systemName: imageName)
                 .resizable()
                 .foregroundStyle(.white)
                 .frame(width: 100, height: 100)
                 .padding()
-            Text(planetName)
+            Text(text)
                 .font(.headline)
                 .foregroundStyle(.white)
         }
+        .padding(.bottom, 10)
     }
+    
 }
 
 #Preview {
-    PlanetPreview(planetName: "Planeta")
+    Preview(text: "Preview", imageName: "globe.americas.fill")
 }

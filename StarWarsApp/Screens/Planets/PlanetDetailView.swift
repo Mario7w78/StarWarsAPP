@@ -11,9 +11,10 @@ struct PlanetDetailView: View {
     let planet: Planet
     var body: some View {
         ZStack{
-            Color(.black).edgesIgnoringSafeArea(.all)
+            Color(.swBg).edgesIgnoringSafeArea(.all)
             
             VStack{
+                
                 Text(planet.name)
                     .font(.title)
                     .foregroundStyle(.white)
@@ -36,6 +37,7 @@ struct PlanetDetailView: View {
                         Text("Habitants: \(planet.population)")
                     }
                 }
+                .frame(height: 400)
                 
                     
             }
