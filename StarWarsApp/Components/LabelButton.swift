@@ -10,8 +10,9 @@ import SwiftUI
 struct LabelButton: View {
     let title: String
     let imageName: String
+    
     var body: some View {
-        VStack{
+        VStack(spacing: 20){
             Image(systemName: imageName)
                 .resizable()
                 .scaledToFit()

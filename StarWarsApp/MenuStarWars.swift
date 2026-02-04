@@ -18,18 +18,26 @@ struct MenuStarWars: View {
                     Image("starwarsLogo")
                         .resizable()
                         .frame(height: 200)
-                        .padding()
-                    NavigationLink(destination: FilmListView()) {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 20)
-                                .strokeBorder(Color.white, lineWidth: 3)
-                                .frame(width: 200, height: 50)
-                            Text("START")
-                                .font(.largeTitle)
-                                .foregroundStyle(.white)
-                                .bold()
+                        .padding(.bottom, 50)
+                    
+                    HStack(spacing: 60){
+                        
+                        NavigationLink(destination: FilmListView()){
+                            
+                            LabelButton(title: "Film Info", imageName: "info.circle")
+                            
                         }
-                    }
+                        
+                        
+                        NavigationLink(destination: SearchBarView()){
+                            
+                            LabelButton(title: "Search", imageName: "magnifyingglass")
+                            
+                        }
+                        
+                        
+                        
+                    }.foregroundStyle(.swFont)
                 }
             }
         }

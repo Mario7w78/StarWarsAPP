@@ -30,11 +30,8 @@ struct SpecieGridView: View {
                 }
             }
             .task {
-                do
-                {
-                    try await viewModel.getSpecies(film: film)}
-                catch {
-                    print(viewModel.errorMessage!)}}
+                do { try await viewModel.getSpecies(film: film) }
+                catch { print(viewModel.errorMessage!)} }
             
             .toolbar {
                 ToolbarItem(placement: .principal) {

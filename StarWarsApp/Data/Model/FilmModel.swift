@@ -26,6 +26,7 @@
         let starships : [String]
         let vehicles : [String]
         let species : [String]
+        let url: String
         
         
         
@@ -41,6 +42,7 @@
             case starships = "starships"
             case vehicles = "vehicles"
             case species = "species"
+            case url = "url"
         }
         
     }
