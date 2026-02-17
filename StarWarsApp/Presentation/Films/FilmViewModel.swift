@@ -7,24 +7,30 @@
 
 import Foundation
 
-@MainActor public final class FilmViewModel: ObservableObject {
+@MainActor
+final class FilmViewModel: ObservableObject {
     @Published var films: [Film] = []
     @Published var isLoading: Bool = true
     
+    private let getFilmList: GetFilmListUseCase
     
-    
-    func getFilms() async {
-        do {
-            let filmsResponse = try await NetworkManager.shared.getFilms()
-            
-            films = filmsResponse.results.sorted(by: {$0.episodeId < $1.episodeId})
-            
-        }catch{
-            print("Error: \(error)")
-        }
-        isLoading = false
+    init(getFilmList: GetFilmListUseCase) {
+        self.getFilmList = getFilmList
     }
     
+    func getFilms() async {
+        isLoading = true
+        
+        let result = await getFilmList.execute()
+        
+        guard case .success(let films) = result else {
+            handleError(error: result.failureValue as? StarWarsDomainError)
+            return
+        }
+        
+        self.films = films
+        isLoading = false
+    }
     
     func getImageName(episode: Int) -> String {
         switch episode {
@@ -42,6 +48,13 @@ import Foundation
             return "ReturnOfTheJedi"
         default:
             return "ANewHope"
+        }
+    }
+    
+    private func handleError(error: StarWarsDomainError?){
+        Task {
+            isLoading = false
+            //            showErrorMessage = errorMapper.map(error: error!)
         }
     }
     

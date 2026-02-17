@@ -1,19 +1,17 @@
-    //
-    //  PlanetModel.swift
-    //  StarWarsApp
-    //
-    //  Created by Mario on 27/01/26.
-    //
+//
+//  Film.swift
+//  StarWarsApp
+//
+//  Created by Mario on 16/02/26.
+//
 
-    import Foundation
-
-
-    struct FilmResponse: Decodable {
-        let count: Int
-        let results: [Film]
-    }
+import Foundation
 
 
+struct FilmResponseDTO: Decodable {
+    let count: Int
+    let results: [Film]
+    
     struct Film: Decodable {
         let title: String
         let episodeId: Int
@@ -27,8 +25,6 @@
         let vehicles : [String]
         let species : [String]
         let url: String
-        
-        
         
         enum CodingKeys: String, CodingKey {
             case episodeId = "episode_id"
@@ -44,11 +40,8 @@
             case species = "species"
             case url = "url"
         }
-        
     }
-
-
-  
+}
 
 
 

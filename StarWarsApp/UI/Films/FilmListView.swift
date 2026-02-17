@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct FilmListView: View {
-    @StateObject var viewModel = FilmViewModel()
+    @ObservedObject private var viewModel: FilmViewModel
+    
+    init(viewModel: FilmViewModel){
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -49,9 +54,9 @@ struct FilmListView: View {
     }
 }
 
-#Preview {
-    FilmListView()
-}
+//#Preview {
+//    FilmListView()
+//}
 
 
 

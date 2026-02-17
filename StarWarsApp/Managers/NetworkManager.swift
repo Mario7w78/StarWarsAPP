@@ -89,7 +89,7 @@ final class NetworkManager {
                 throw DomainError.invalidResponse(description: "Respuesta del servidor invalida")
             }
             
-            let planetResponse = try JSONDecoder().decode(PlanetResponse.self, from: data)
+            let planetResponse = try JSONDecoder().decode(PlanetResponseDTO.self, from: data)
             
             return planetResponse.results
             
