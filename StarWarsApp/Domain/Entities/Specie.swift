@@ -18,4 +18,5 @@ struct Specie: Decodable {
     let averageLifespan: String
     let language: String
     let people: [String]
+    let url: String
 }

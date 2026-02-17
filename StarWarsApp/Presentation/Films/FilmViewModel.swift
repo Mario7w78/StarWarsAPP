@@ -11,10 +11,11 @@ import Foundation
 final class FilmViewModel: ObservableObject {
     @Published var films: [Film] = []
     @Published var isLoading: Bool = true
+    @Published var showErrorMessage: String?
+
+    private let getFilmList: GetFilmListUseCaseProtocol
     
-    private let getFilmList: GetFilmListUseCase
-    
-    init(getFilmList: GetFilmListUseCase) {
+    init(getFilmList: GetFilmListUseCaseProtocol) {
         self.getFilmList = getFilmList
     }
     
@@ -54,8 +55,9 @@ final class FilmViewModel: ObservableObject {
     private func handleError(error: StarWarsDomainError?){
         Task {
             isLoading = false
-            //            showErrorMessage = errorMapper.map(error: error!)
+            print("Error: \(String(describing: error?.localizedDescription))")
         }
     }
     
 }
+

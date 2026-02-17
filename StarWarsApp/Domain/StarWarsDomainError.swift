@@ -7,6 +7,8 @@
 
 
 enum StarWarsDomainError: Error {
-    case generic
+    case badRequest
+    case notFound
     case tooManyRequests
+    case generic
 }

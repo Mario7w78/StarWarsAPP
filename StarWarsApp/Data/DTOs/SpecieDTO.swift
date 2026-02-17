@@ -22,6 +22,7 @@ struct SpecieResponseDTO: Decodable {
         let averageLifespan: String
         let language: String
         let people: [String]
+        let url: String
         
         enum CodingKeys: String, CodingKey {
             case name = "name"
@@ -34,6 +35,7 @@ struct SpecieResponseDTO: Decodable {
             case averageLifespan = "average_lifespan"
             case language = "language"
             case people = "people"
+            case url = "url"
         }
     }
 }

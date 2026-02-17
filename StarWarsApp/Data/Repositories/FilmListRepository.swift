@@ -8,9 +8,9 @@
 import Foundation
 
 
-class FilmListRepository: FilmListRepositoryProtocol {
+final class FilmListRepository: FilmListRepositoryProtocol {
     private let dataSource: APIFilmListDataSourceProtocol
-    private let domainMapper: FilmDomainMapper
+    private let domainMapper: SpecieDomainMapper
     private let errorMapper: StarWarsDomainErrorMapper
     
     init(dataSource: APIFilmListDataSourceProtocol, errorMapper: StarWarsDomainErrorMapper, domainMapper: FilmDomainMapper) {

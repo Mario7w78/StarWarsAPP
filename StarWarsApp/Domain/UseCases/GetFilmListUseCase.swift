@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol GetFilmListUseCaseProtocol {
-    func execute() async -> Result<[Film], StarWarsDomainError>
-}
-
 class GetFilmListUseCase: GetFilmListUseCaseProtocol {
     private let repository: FilmListRepositoryProtocol
     

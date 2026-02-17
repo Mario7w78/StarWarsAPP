@@ -18,4 +18,5 @@ struct Planet: Decodable {
     let surfaceWater: String
     let population: String
     let residents: [String]
+    let url: String
 }

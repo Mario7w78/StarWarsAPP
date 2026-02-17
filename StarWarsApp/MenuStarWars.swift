@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuStarWars: View {
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -22,7 +23,7 @@ struct MenuStarWars: View {
                     
                     HStack(spacing: 60){
                         
-                        NavigationLink(destination: FilmListView()){
+                        NavigationLink(destination: FilmListViewContainer()){
                             
                             LabelButton(title: "Film Info", imageName: "info.circle")
                             
