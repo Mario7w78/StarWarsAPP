@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct SpecieGridView: View {
-    @StateObject var viewModel = SpecieViewModel()
-    let film: [String]
+    @ObservedObject private var viewModel: SpecieViewModel
+    private let film: [String]
+    init(viewModel: SpecieViewModel, film: [String]) {
+        self.viewModel = viewModel
+        self.film = film
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -30,9 +35,8 @@ struct SpecieGridView: View {
                 }
             }
             .task {
-                do { try await viewModel.getSpecies(film: film) }
-                catch { print(viewModel.errorMessage!)} }
-            
+                await viewModel.getSpecies(filmSpecieUrl: film)
+            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Species")
@@ -44,6 +48,6 @@ struct SpecieGridView: View {
     }
 }
 
-#Preview {
-    SpecieGridView(film: ["https://swapi.dev/api/species/1/"])
-}
+//#Preview {
+//    SpecieGridView(film: ["https://swapi.dev/api/species/1/"])
+//}

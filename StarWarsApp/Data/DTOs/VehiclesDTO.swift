@@ -22,6 +22,7 @@ struct VehicleResponseDTO: Decodable{
         let cargoCapacity: String
         let consumables: String
         let vehicleClass: String
+        let url: String
         
         enum CodingKeys: String, CodingKey {
             case name = "name"
@@ -35,6 +36,7 @@ struct VehicleResponseDTO: Decodable{
             case vehicleClass = "vehicle_class"
             case passengers = "passengers"
             case cargoCapacity = "cargo_capacity"
+            case url = "url"
         }
     }
 }

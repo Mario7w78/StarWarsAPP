@@ -59,10 +59,33 @@ final class RepositoryFactory: RepositoryFactoryProtocol {
         specieListRepository
     }
     
+    //MARK: SpecieRepository
+    
+    private lazy var characterListRepository: CharacterListRepositoryProtocol = {
+        CharacterListRepository(
+            dataSource: remoteDSFactory.getCharacterListDataSource(),
+            errorMapper: StarWarsDomainErrorMapper(),
+            domainMapper: CharacterDomainMapper()
+        )
+    }()
+    
+    func getCharacterListRepository() -> CharacterListRepositoryProtocol {
+        characterListRepository
+    }
+    
+    //MARK: VehicleRepository
+    
+    private lazy var vehicleListRepository: VehicleListRepositoryProtocol = {
+        VehicleListRepository(
+            dataSource: remoteDSFactory.getVehicleListDataSource(),
+            errorMapper: StarWarsDomainErrorMapper(),
+            domainMapper: VehicleDomainMapper()
+        )
+    }()
+    
+    func getVehicleListRepository() -> VehicleListRepositoryProtocol {
+        vehicleListRepository
+    }
+    
 }
 
-protocol RepositoryFactoryProtocol {
-    func getfilmListRepository() -> FilmListRepositoryProtocol
-    func getPlanetListRepository() -> PlanetListRepositoryProtocol
-    func getSpecieListRepository() -> SpecieListRepositoryProtocol
-}

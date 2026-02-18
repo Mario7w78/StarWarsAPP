@@ -8,7 +8,6 @@
 import Foundation
 
 final class RemoteDSFactory: RemoteDSFactoryProtocol{
-   
     private let httpClient: HTTPClient
     
     init(httpClient: HTTPClient) {
@@ -45,12 +44,28 @@ final class RemoteDSFactory: RemoteDSFactoryProtocol{
         specieListDataSource
     }
     
+    //MARK: CharacterDataSource
+    
+    private lazy var characterListDataSource: APICharacterListDataSourceProtocol = {
+        APICharacterListDataSource(httpClient: httpClient)
+    }()
+    
+    func getCharacterListDataSource() -> APICharacterListDataSourceProtocol {
+        characterListDataSource
+    }
+    
+    //MARK: VehiclesDataSource
+    
+    private lazy var vehicleListDataSource: APIVehicleListDataSourceProtocol = {
+        APIVehicleListDataSource(httpClient: httpClient)
+    }()
+    
+    func getVehicleListDataSource() -> APIVehicleListDataSourceProtocol {
+        vehicleListDataSource
+    }
+    
+    
 }
 
 
 
-protocol RemoteDSFactoryProtocol {
-    func getFilmListDataSource() -> APIFilmListDataSourceProtocol
-    func getPlanetListDataSource() -> APIPlanetListDataSourceProtocol
-    func getSpecieListDataSource() -> APISpecieListDataSourceProtocol
-}

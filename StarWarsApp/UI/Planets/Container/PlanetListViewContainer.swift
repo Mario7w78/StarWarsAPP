@@ -12,10 +12,10 @@ import SwiftUI
 struct PlanetListViewContainer: View {
     
     @DependencyContainer(\.useCaseFactory) private var useCaseFactory
-    
+    let film: [String]
     var body: some View {
         PlanetListView(
-            viewModel: PlanetViewModel(getPlanetList: useCaseFactory.getPlanetUseCase())
+            viewModel: PlanetViewModel(getPlanetList: useCaseFactory.getPlanetByFilmUseCase()), film: film
         )
     }
 }

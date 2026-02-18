@@ -22,7 +22,6 @@ class URLSessionHTTPClient: HTTPClient {
         guard let url = requestMaker.url(endpoint: endpoint, baseURL: baseURL) else {
             return .failure(.invalidURL)
         }
-        
         do
         {
             let result = try await session.data(from: url)

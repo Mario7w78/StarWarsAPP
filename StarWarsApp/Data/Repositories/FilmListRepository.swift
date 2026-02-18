@@ -10,7 +10,7 @@ import Foundation
 
 final class FilmListRepository: FilmListRepositoryProtocol {
     private let dataSource: APIFilmListDataSourceProtocol
-    private let domainMapper: SpecieDomainMapper
+    private let domainMapper: FilmDomainMapper
     private let errorMapper: StarWarsDomainErrorMapper
     
     init(dataSource: APIFilmListDataSourceProtocol, errorMapper: StarWarsDomainErrorMapper, domainMapper: FilmDomainMapper) {

@@ -41,7 +41,7 @@ struct SpecieDetailView: View {
                 VStack{
                     Text("Characters")
                         .font(.title2.bold())
-                    CharacterListView(charactersURL: specie.people)
+                    CharacterListViewContainer(charactersURL: specie.people)
                         .presentationDetents([.medium, .medium])
                 }
                 
@@ -55,21 +55,21 @@ struct SpecieDetailView: View {
     }
 }
 
-#Preview {
-    SpecieDetailView(specie: Specie(
-        name: "Human",
-        classification: "mammal",
-        designation: "sentient",
-        averageHeight: "180",
-        skinColors: "caucasian, black, asian, hispanic",
-        hairColors: "blonde, brown, black, red",
-        eyeColors: "brown, blue, green, hazel, grey, amber,",
-        averageLifespan: "120",
-        language: "Galactic Basic",
-        people: [
-            "https://swapi.dev/api/people/66/",
-            "https://swapi.dev/api/people/67/",
-            "https://swapi.dev/api/people/68/",
-            "https://swapi.dev/api/people/74/"
-        ]))
-}
+//#Preview {
+//    SpecieDetailView(specie: Specie(
+//        name: "Human",
+//        classification: "mammal",
+//        designation: "sentient",
+//        averageHeight: "180",
+//        skinColors: "caucasian, black, asian, hispanic",
+//        hairColors: "blonde, brown, black, red",
+//        eyeColors: "brown, blue, green, hazel, grey, amber,",
+//        averageLifespan: "120",
+//        language: "Galactic Basic",
+//        people: [
+//            "https://swapi.dev/api/people/66/",
+//            "https://swapi.dev/api/people/67/",
+//            "https://swapi.dev/api/people/68/",
+//            "https://swapi.dev/api/people/74/"
+//        ]))
+//}

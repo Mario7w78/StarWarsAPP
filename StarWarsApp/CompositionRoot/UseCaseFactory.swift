@@ -9,7 +9,6 @@ import Foundation
 
 
 final class UseCaseFactory: UseCaseFactoryProtocol{
-    
     private let repositoryFactory: RepositoryFactoryProtocol
     
     init(repositoryFactory: RepositoryFactoryProtocol) {
@@ -46,12 +45,44 @@ final class UseCaseFactory: UseCaseFactoryProtocol{
     
     func getSpecieUseCase() -> GetSpecieListUseCaseProtocol { specieUseCase }
     
+    private lazy var speciesByFilmUseCase: GetSpecieListByFilmUseCaseProtocol = {
+        GetSpeciesByFilmUseCase(repository: repositoryFactory.getSpecieListRepository())
+    }()
     
+    func getSpeciesByFilmUseCase() -> GetSpecieListByFilmUseCaseProtocol {
+        speciesByFilmUseCase
+    }
+    
+    //MARK: CharacterUseCase
+    
+    private lazy var characterUseCase: GetCharacterListUseCaseProtocol = {
+        GetCharacterListUseCase(repository: repositoryFactory.getCharacterListRepository())
+    }()
+    
+    func getCharacterUseCase() -> GetCharacterListUseCaseProtocol { characterUseCase }
+    
+    private lazy var charactersBySpecieUseCase: GetCharactersBySpecieUseCaseProtocol = {
+        GetCharactersBySpecieUseCase(repository: repositoryFactory.getCharacterListRepository())
+    }()
+    
+    func getCharactersBySpeciesUseCase() -> GetCharactersBySpecieUseCaseProtocol {
+        charactersBySpecieUseCase
+    }
+    
+    //MARK: VehicleUseCase
+    
+    private lazy var vehicleUseCase: GetVehicleListUseCaseProtocol = {
+        GetVehicleListUseCase(repository: repositoryFactory.getVehicleListRepository())
+    }()
+    
+    func getvehicleUseCase() -> GetVehicleListUseCaseProtocol { vehicleUseCase }
+    
+    private lazy var vehicleByFilmListUseCase: GetVehicleByFilmUseCaseProtocol = {
+        GetVehicleByFilmListUseCase(repository: repositoryFactory.getVehicleListRepository())
+    }()
+    
+    func getVehiclesByFilmUseCase() -> GetVehicleByFilmUseCaseProtocol {
+        vehicleByFilmListUseCase
+    }
 }
 
-protocol UseCaseFactoryProtocol {
-    func getFilmUseCase() -> GetFilmListUseCaseProtocol
-    func getPlanetUseCase() -> GetPlanetListUseCaseProtocol
-    func getPlanetByFilmUseCase() -> GetPlanetListByFilmUseCaseProtocol
-    func getSpecieUseCase() -> GetSpecieListUseCaseProtocol
-}

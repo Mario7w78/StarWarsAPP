@@ -18,18 +18,22 @@ public final class SpecieViewModel: ObservableObject {
     let columns: [GridItem] = [GridItem(.flexible()),
                                GridItem(.flexible())]
 
-    private let getSpecieList: GetSpecieListUseCaseProtocol
+    private let getSpecieList: GetSpecieListByFilmUseCaseProtocol
     
-    init(getSpecieList: GetSpecieListUseCaseProtocol) {
+    init(getSpecieList: GetSpecieListByFilmUseCaseProtocol) {
         self.getSpecieList = getSpecieList
     }
     
-    func getSpecies() async {
-        let result = await getSpecieList.execute()
+    func getSpecies(filmSpecieUrl: [String]) async {
+        let result = await getSpecieList.execute(filmSpecieUrl: filmSpecieUrl)
+        
         guard case .success(let species) = result else {
             handleError(error: result.failureValue as? StarWarsDomainError)
             return
         }
+        
+        self.species = species
+        isLoading = false
     }
     
     private func handleError(error: StarWarsDomainError?){

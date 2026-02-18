@@ -22,10 +22,14 @@ class PlanetDomainMapper {
                 terrain: planet.terrain,
                 surfaceWater: planet.surfaceWater,
                 population: planet.population,
-                residents: planet.residents
+                residents: planet.residents,
+                url: planet.url
             )
         )
         }
         return planets
     }
 }
+
+
+

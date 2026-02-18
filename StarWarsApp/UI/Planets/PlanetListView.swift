@@ -9,10 +9,14 @@ import SwiftUI
 
 struct PlanetListView: View {
     
-    @StateObject var viewModel = PlanetViewModel()
+    @ObservedObject private var viewModel: PlanetViewModel
     let film : [String]
-    let filter: Bool
     
+    init(viewModel: PlanetViewModel, film : [String]){
+        self.viewModel = viewModel
+        self.film = film
+    }
+
     var body: some View {
         NavigationStack{
             ZStack{
@@ -40,7 +44,7 @@ struct PlanetListView: View {
                         .tint(.white)
                 }
             }
-            .task{await viewModel.getPlanets(film: film, filter: filter)}
+            .task{await viewModel.getPlanets(filmPlanetUrl: film)}
             
             
         }
@@ -51,6 +55,6 @@ struct PlanetListView: View {
 
 
 
-#Preview {
-    PlanetListView(film: ["https://swapi.dev/api/planets/4/"], filter: true)
-}
+//#Preview {
+//    PlanetListView(film: ["https://swapi.dev/api/planets/4/"], filter: true)
+//}

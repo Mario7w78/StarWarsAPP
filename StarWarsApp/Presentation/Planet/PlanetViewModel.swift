@@ -13,18 +13,22 @@ final class PlanetViewModel: ObservableObject {
     @Published var planets: [Planet] = []
     @Published var isLoading: Bool = true
     
-    private let getPlanetList: GetPlanetListUseCaseProtocol
+    private let getPlanetList: GetPlanetListByFilmUseCaseProtocol
     
-    init(getPlanetList: GetPlanetListUseCaseProtocol) {
+    init(getPlanetList: GetPlanetListByFilmUseCaseProtocol) {
         self.getPlanetList = getPlanetList
     }
     
-    func getPlanets() async {
-        let result = await getPlanetList.execute()
+    func getPlanets(filmPlanetUrl: [String]) async {
+        let result = await getPlanetList.execute(filmPlanetUrl: filmPlanetUrl)
+        
         guard case .success(let planets) = result else {
             handleError(error: result.failureValue as? StarWarsDomainError)
             return
         }
+        
+        self.planets = planets
+        isLoading = false
     }
     
     private func handleError(error: StarWarsDomainError?){

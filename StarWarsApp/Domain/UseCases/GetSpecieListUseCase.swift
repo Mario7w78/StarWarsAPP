@@ -28,3 +28,4 @@ class GetSpecieListUseCase: GetSpecieListUseCaseProtocol {
         return .success(specieList)
     }
 }
+

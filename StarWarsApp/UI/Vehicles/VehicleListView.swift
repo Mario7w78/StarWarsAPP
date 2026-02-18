@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct VehicleListView: View {
-    @StateObject var viewModel = VehicleViewModel()
+    @ObservedObject private var viewModel: VehicleViewModel
     let film: [String]
+    init(viewModel: VehicleViewModel, film: [String]) {
+        self.viewModel = viewModel
+        self.film = film
+    }
     var body: some View {
         NavigationStack{
             ZStack{
@@ -31,7 +35,7 @@ struct VehicleListView: View {
                         .tint(.white)
                 }
             }
-            .task{await viewModel.getVehicles(film: film)}
+            .task{await viewModel.getVehicles(filmVehicleUrl: film)}
             .toolbar {
                 ToolbarItem(placement: .principal) {
                             Text("Vehicles")
@@ -45,6 +49,6 @@ struct VehicleListView: View {
     }
 }
 
-#Preview {
-    VehicleListView(film: ["https://swapi.dev/api/vehicles/8/"])
-}
+//#Preview {
+//    VehicleListView(film: ["https://swapi.dev/api/vehicles/8/"])
+//}

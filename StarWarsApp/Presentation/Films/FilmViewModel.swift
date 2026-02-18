@@ -20,8 +20,6 @@ final class FilmViewModel: ObservableObject {
     }
     
     func getFilms() async {
-        isLoading = true
-        
         let result = await getFilmList.execute()
         
         guard case .success(let films) = result else {

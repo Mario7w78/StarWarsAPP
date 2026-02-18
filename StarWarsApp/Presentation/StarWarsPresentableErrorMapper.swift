@@ -17,6 +17,8 @@ class StarWarsPresentableErrorMapper {
             return "Not Found"
         case .tooManyRequests:
             return "Too Many Requests"
+        case .generic:
+            return "I dont know Error"
         }
     }
 }

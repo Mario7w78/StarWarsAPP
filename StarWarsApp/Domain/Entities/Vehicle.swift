@@ -19,4 +19,5 @@ struct Vehicle: Decodable{
     let cargoCapacity: String
     let consumables: String
     let vehicleClass: String
+    let url: String
 }

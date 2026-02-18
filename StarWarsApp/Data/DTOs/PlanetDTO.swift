@@ -21,6 +21,7 @@ struct PlanetResponseDTO: Decodable {
         let surfaceWater: String
         let population: String
         let residents: [String]
+        let url: String
         
         enum CodingKeys: String, CodingKey {
             case name = "name"
@@ -33,6 +34,7 @@ struct PlanetResponseDTO: Decodable {
             case surfaceWater = "surface_water"
             case population = "population"
             case residents = "residents"
+            case url = "url"
         }
     }
 }

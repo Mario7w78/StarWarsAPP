@@ -15,11 +15,11 @@ struct FilmDetailView: View {
             Group {
                 FilmInfoView(film: film, filmImageName: filmImage)
                     .tabItem { Label("Home", systemImage: "house")}
-                VehicleListView(film: film.vehicles)
+                VehicleListViewContainer(film: film.vehicles)
                     .tabItem { Label("Vehicles", systemImage: "paperplane.fill")}
-                SpecieGridView( film: film.species)
+                SpecieListViewContainer( film: film.species)
                     .tabItem { Label("Species", systemImage: "person.2.fill")}
-                PlanetListView(film: film.planets, filter: true)
+                PlanetListViewContainer(film: film.planets)
                     .tabItem { Label("Planets", systemImage: "globe")}
             }
             .toolbarBackground(.black, for: .tabBar)

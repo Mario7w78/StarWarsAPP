@@ -30,3 +30,7 @@ class SpecieListRepository: SpecieListRepositoryProtocol {
         return .success(domainMapper.map(specieResponseDTO: specieList))
     }
 }
+
+
+
+

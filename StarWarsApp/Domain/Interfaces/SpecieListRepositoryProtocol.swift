@@ -10,3 +10,6 @@ import Foundation
 protocol SpecieListRepositoryProtocol {
     func getSpecieList() async -> Result<[Specie], StarWarsDomainError>
 }
+
+
+

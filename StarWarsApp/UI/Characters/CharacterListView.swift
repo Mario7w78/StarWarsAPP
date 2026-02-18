@@ -8,41 +8,72 @@
 import SwiftUI
 
 struct CharacterListView: View {
-    @StateObject var viewModel = CharacterViewModel()
-    let charactersURL: [String]
+    @ObservedObject private var viewModel: CharacterViewModel
+    private let charactersURL: [String]
+    
+    init( viewModel: CharacterViewModel, charactersURL: [String]){
+        self.viewModel = viewModel
+        self.charactersURL = charactersURL
+    }
     
     var body: some View {
         ZStack{
             VStack(){
-                ScrollView(.horizontal) {
+                ScrollView(
+                    .horizontal
+                ) {
                     LazyHStack(){
-                        ForEach(viewModel.characters, id: \.name) { character in
-                            Preview(text: character.name, imageName: "person.fill")
-                                .onTapGesture {
-                                    viewModel.currentCharacter = character
-                                }
+                        ForEach(
+                            viewModel.characters,
+                            id: \.name
+                        ) { character in
+                            Preview(
+                                text: character.name,
+                                imageName: "person.fill"
+                            )
+                            .onTapGesture {
+                                viewModel.currentCharacter = character
+                            }
                         }
                     }
                 }
             }
-            .task { await viewModel.getCharacters(charactersURL: charactersURL) }
+            .task {
+                await viewModel.getCharacters(
+                    specieUrl: charactersURL
+                )
+            }
+            
             if viewModel.isLoading {
                 ProgressView()
-                    .tint(.white)
+                    .tint(
+                        .white
+                    )
             }
         }
-        .frame(height: 200)
-        .sheet(item: $viewModel.currentCharacter){ character in
-            CharacterDetailView(character: character)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
+        .frame(
+            height: 200
+        )
+        .sheet( item: $viewModel.currentCharacter
+        ){ character in
+            CharacterDetailView(
+                character: character
+            )
+            .presentationDetents(
+                [.medium]
+            )
+            .presentationDragIndicator(
+                .visible
+            )
         }
-    
         
-        }
+        
     }
-    
-    #Preview {
-        CharacterListView(charactersURL: ["https://swapi.dev/api/people/1"])
-    }
-    
+}
+
+//#Preview {
+//    CharacterListView(
+//        charactersURL: ["https://swapi.dev/api/people/1"]
+//    )
+//}
+//

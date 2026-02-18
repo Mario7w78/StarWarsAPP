@@ -50,15 +50,15 @@ struct CharacterDetailView: View {
     }
 }
 
-#Preview {
-    CharacterDetailView(character: Character(
-        name: "Luke Skywalker",
-        height: "172",
-        mass: "77",
-        hairColor: "blond",
-        skinColor: "fair",
-        eyeColor: "blue",
-        birthYear: "19BBY",
-        gender: "male"
-    ))
-}
+//#Preview {
+//    CharacterDetailView(character: Character(
+//        name: "Luke Skywalker",
+//        height: "172",
+//        mass: "77",
+//        hairColor: "blond",
+//        skinColor: "fair",
+//        eyeColor: "blue",
+//        birthYear: "19BBY",
+//        gender: "male", url: <#String#>
+//    ))
+//}

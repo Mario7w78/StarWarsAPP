@@ -19,6 +19,7 @@ struct CharacterResponseDTO: Decodable {
         let eyeColor: String
         let birthYear: String
         let gender: String
+        let url: String
         
         enum CodingKeys: String, CodingKey {
             case name = "name"
@@ -29,6 +30,7 @@ struct CharacterResponseDTO: Decodable {
             case eyeColor =  "eye_color"
             case birthYear = "birth_year"
             case gender = "gender"
+            case url = "url"
         }
     }
 }

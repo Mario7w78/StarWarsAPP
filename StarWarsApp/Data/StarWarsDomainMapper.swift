@@ -12,7 +12,6 @@ class StarWarsDomainErrorMapper{
         guard error == .tooManyRequests else {
             return .generic
         }
-        
         return .generic
     }
 }

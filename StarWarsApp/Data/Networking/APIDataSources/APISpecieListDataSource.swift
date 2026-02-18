@@ -24,8 +24,8 @@ class APISpecieListDataSource: APISpecieListDataSourceProtocol{
         }
         
         do {
-            let specieListDTO = try JSONDecoder().decode(SpecieResponseDTO.self, from: data)
-            return .success(specieListDTO)
+            let speciesListDTO = try JSONDecoder().decode(SpecieResponseDTO.self, from: data)
+            return .success(speciesListDTO)
         }
         catch {
             return .failure(.parsingError)
@@ -40,3 +40,6 @@ class APISpecieListDataSource: APISpecieListDataSourceProtocol{
         return error
     }
 }
+
+
+

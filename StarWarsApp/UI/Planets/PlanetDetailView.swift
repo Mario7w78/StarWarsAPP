@@ -46,20 +46,20 @@ struct PlanetDetailView: View {
     }
 }
 
-#Preview {
-    PlanetDetailView(planet: Planet(
-        name: "Tatooine",
-        rotationPeriod: "23",
-        orbitalPeriod: "304",
-        diameter: "10465",
-        climate: "arid",
-        gravity: "1 standard",
-        terrain: "desert",
-        surfaceWater: "1",
-        population: "200000",
-        residents: [
-            "https://swapi.dev/api/people/1/",
-            "https://swapi.dev/api/people/2/"
-        ]
-    ))
-}
+//#Preview {
+//    PlanetDetailView(planet: Planet(
+//        name: "Tatooine",
+//        rotationPeriod: "23",
+//        orbitalPeriod: "304",
+//        diameter: "10465",
+//        climate: "arid",
+//        gravity: "1 standard",
+//        terrain: "desert",
+//        surfaceWater: "1",
+//        population: "200000",
+//        residents: [
+//            "https://swapi.dev/api/people/1/",
+//            "https://swapi.dev/api/people/2/"
+//        ]
+//    ))
+//}
